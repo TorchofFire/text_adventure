@@ -1,10 +1,10 @@
-# Text Adventure Game
+# Text Adventure Engine
 
-A text-based adventure game created using Tauri and TypeScript.
+A text-based interactive fiction engine created using Tauri and TypeScript.
 
 ## Overview
 
-This project is a text adventure game designed to provide an immersive experience for players through a command-line interface. It's built with Tauri, a framework for creating desktop applications with web technologies, and TypeScript for coding consistency and type safety.
+This project is a text adventure engine designed to provide an immersive experience for players through a command-line interface. It's built with Tauri, a framework for creating desktop applications with web technologies, and TypeScript for coding consistency and type safety.
 
 ## Features
 
