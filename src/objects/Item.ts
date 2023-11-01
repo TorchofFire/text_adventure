@@ -1,4 +1,4 @@
-import { Articles } from "../constants/Words.constant";
+import { Articles } from '../constants/Words.constant';
 
 export default class Item {
     constructor() {
@@ -8,6 +8,7 @@ export default class Item {
         this.canBePickedUp = true;
         this.article = Articles.a;
     }
+
     name: string;
     altNames: string[] | null;
     description: string;
@@ -18,18 +19,22 @@ export default class Item {
         this.name = name;
         return this;
     }
+
     public setAltName(names: string[]) {
         this.altNames = names;
         return this;
     }
+
     public setDescription(description: string) {
         this.description = description;
         return this;
     }
+
     public setCanBePickedUp(canBePickedUp: boolean) {
         this.canBePickedUp = canBePickedUp;
         return this;
     }
+
     public setArticle(article: Articles) {
         this.article = article;
         return this;

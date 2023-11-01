@@ -1,7 +1,7 @@
-import Door from "./Door";
-import Player from "./Player";
-import { Position } from "../types/Position.type";
-import Item from "./Item";
+import Door from './Door';
+import Player from './Player';
+import { Position } from '../types/Position.type';
+import Item from './Item';
 
 export default class Room {
     constructor() {
@@ -13,8 +13,9 @@ export default class Room {
         this.doors = [];
         this.items = [];
     }
+
     name: string;
-    altNames: string[]
+    altNames: string[];
     description: string;
     player: Player | null;
     position: Position | null;
@@ -22,8 +23,8 @@ export default class Room {
     items: Item[];
 
     newItem(): Item {
-        const item = new Item()
-        this.items.push(item)
+        const item = new Item();
+        this.items.push(item);
         return item;
     }
 }

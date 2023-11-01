@@ -18,4 +18,4 @@ export enum TextElements {
     small = 'small',
     subscript = 'sub',
     superscript = 'sup'
-};
+}

@@ -1,4 +1,4 @@
-import { Position } from "../types/Position.type";
+import { Position } from '../types/Position.type';
 
 export default class Door {
     constructor() {
@@ -8,6 +8,7 @@ export default class Door {
         this.destination = null;
         this.locked = false;
     }
+
     name: string;
     altNames: string[] | null;
     description: string;

@@ -3,7 +3,7 @@ export enum Articles {
     a = 'a',
     an ='an',
     the = 'the'
-};
+}
 
 export enum Verbs {
     go = 'go',
