@@ -15,27 +15,27 @@ export default class Item {
     canBePickedUp: boolean;
     article: Articles;
 
-    public setName(name: string) {
+    public setName(name: string): Item {
         this.name = name;
         return this;
     }
 
-    public setAltName(names: string[]) {
+    public setAltName(names: string[]): Item {
         this.altNames = names;
         return this;
     }
 
-    public setDescription(description: string) {
+    public setDescription(description: string): Item {
         this.description = description;
         return this;
     }
 
-    public setCanBePickedUp(canBePickedUp: boolean) {
+    public setCanBePickedUp(canBePickedUp: boolean): Item {
         this.canBePickedUp = canBePickedUp;
         return this;
     }
 
-    public setArticle(article: Articles) {
+    public setArticle(article: Articles): Item {
         this.article = article;
         return this;
     }
