@@ -28,9 +28,7 @@ This project is a text adventure engine designed to provide an immersive experie
 
 ## Installation
 
-1. Clone the repository.
-2. Install dependencies: `yarn install`
-3. Run the application: `yarn dev`
+I'll put instructions here later :P
 
 ## Contributing
 
