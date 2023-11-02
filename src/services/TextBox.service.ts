@@ -15,8 +15,12 @@ class TextBoxService {
 
     appendTextElement(text: string, elementType: TextElements): void {
         const element = document.createElement(elementType);
-        element.textContent = text;
-        textBox.appendChild(element);
+        const textLines = text.split('\n');
+        textLines.forEach((line, index) => {
+            element.innerText += line;
+            textBox.appendChild(element);
+            if (index !== textLines.length - 1) element.appendChild(document.createElement('br'));
+        });
         textBox.scrollTop = textBox.scrollHeight;
     }
 }
