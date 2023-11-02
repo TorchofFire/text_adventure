@@ -10,19 +10,11 @@ class GameManagerService {
         room.name = 'Dusty Room';
         room.description = 'A dusty room where the air is stale and the floorboards are creaky';
         room.position = { x: 0, y: 0 };
-        room.newItem()
-            .setName('ball')
-            .setDescription('a red ball');
-        room.newItem()
-            .setName('couch')
-            .setDescription('a musty old couch')
+        room.newItem('ball', 'a red ball');
+        room.newItem('couch', 'a musty old couch')
             .setCanBePickedUp(false);
-        room.newItem()
-            .setName('knife')
-            .setDescription('it\'s a knife');
-        room.newItem()
-            .setName('cabinet')
-            .setDescription('A normal looking cabinet in the corner of the room')
+        room.newItem('knife', 'knife');
+        room.newItem('cabinet', 'A normal looking cabinet in the corner of the room')
             .setCanBePickedUp(false);
         return game;
     }

@@ -1,10 +1,10 @@
 import { Articles } from '../constants/Words.constant';
 
 export default class Item {
-    constructor() {
-        this.name = 'Item Name';
+    constructor(name: string, description: string) {
+        this.name = name;
         this.altNames = null;
-        this.description = 'Item Description';
+        this.description = description;
         this.canBePickedUp = true;
         this.article = Articles.a;
     }
@@ -15,18 +15,8 @@ export default class Item {
     canBePickedUp: boolean;
     article: Articles;
 
-    public setName(name: string): Item {
-        this.name = name;
-        return this;
-    }
-
     public setAltName(names: string[]): Item {
         this.altNames = names;
-        return this;
-    }
-
-    public setDescription(description: string): Item {
-        this.description = description;
         return this;
     }
 

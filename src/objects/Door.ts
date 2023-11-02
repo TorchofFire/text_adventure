@@ -1,10 +1,10 @@
 import { Position } from '../types/Position.type';
 
 export default class Door {
-    constructor() {
-        this.name = 'door';
+    constructor(name: string, description: string) {
+        this.name = name;
         this.altNames = null;
-        this.description = 'A sturdy door';
+        this.description = description;
         this.destination = null;
         this.locked = false;
     }

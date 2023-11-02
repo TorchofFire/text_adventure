@@ -4,10 +4,10 @@ import { Position } from '../types/Position.type';
 import Item from './Item';
 
 export default class Room {
-    constructor() {
-        this.name = 'Room Name';
+    constructor(name: string, description: string) {
+        this.name = name;
         this.altNames = [];
-        this.description = 'Room Description';
+        this.description = description;
         this.player = null;
         this.position = null;
         this.doors = [];
@@ -22,8 +22,8 @@ export default class Room {
     doors: Door[];
     items: Item[];
 
-    newItem(): Item {
-        const item = new Item();
+    newItem(name: string, description: string): Item {
+        const item = new Item(name, description);
         this.items.push(item);
         return item;
     }

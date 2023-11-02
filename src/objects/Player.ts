@@ -1,8 +1,8 @@
 import Item from './Item';
 
 export default class Player {
-    constructor() {
-        this.name = 'Roderick';
+    constructor(name: string) {
+        this.name = name;
         this.inventory = [];
     }
 
