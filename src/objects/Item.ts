@@ -1,19 +1,30 @@
 import { Articles } from '../constants/Words.constant';
+import { Action } from '../types/Action.type';
+import { ObjectId } from '../types/ObjectId.type';
 
 export default class Item {
-    constructor(name: string, description: string) {
+    constructor(name: string, id: ObjectId, description: string) {
         this.name = name;
+        this.id = id;
         this.altNames = null;
         this.description = description;
         this.canBePickedUp = true;
         this.article = Articles.a;
+        this.actions = [];
     }
 
     name: string;
+    id: ObjectId;
     altNames: string[] | null;
     description: string;
     canBePickedUp: boolean;
     article: Articles;
+    actions: Action[];
+
+    public addAction(action: Action): Item {
+        this.actions.push(action);
+        return this;
+    }
 
     public setAltName(names: string[]): Item {
         this.altNames = names;

@@ -7,12 +7,13 @@ const userInputForm = document.getElementById('user-input-form') as HTMLFormElem
 export let game: Game;
 
 function startGame(): void {
+    const mainTitle = document.getElementById('main-title') as HTMLElement;
+    mainTitle.textContent = 'Loading...';
     game = gameManagerService.testGame();
     textBoxService.appendTextElement(game.title, TextElements.h3);
     textBoxService.appendTextElement(game.description, TextElements.paragraph);
     textBoxService.appendTextElement('', TextElements.horizontalrule);
-    const mainTitle = document.getElementById('main-title') as HTMLElement;
-    mainTitle.innerHTML = game.title;
+    mainTitle.textContent = game.title;
     textBoxService.describeScene();
     console.log('Game Started', game);
 }
