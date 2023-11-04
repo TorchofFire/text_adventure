@@ -64,8 +64,9 @@ button {
 }
 
 .text-box {
-  overflow: auto;
+  overflow-y: auto;
   flex: 1;
+  word-wrap: break-word;
 }
 
 #user-input-form {
