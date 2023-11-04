@@ -1,4 +1,3 @@
-import { game } from '../main';
 import Player from './Player';
 import Room from './Room';
 
@@ -14,8 +13,4 @@ export default class Game {
     title: string;
     description: string;
     rooms: Room[];
-
-    public getRoomPlayerIsIn(): Room {
-        return game.rooms.filter(x => x.player !== null)[0];
-    }
 }

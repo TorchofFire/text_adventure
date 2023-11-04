@@ -1,5 +1,6 @@
 import { TextElements } from './constants/Elements.constant';
 import Game from './objects/Game';
+import { actionService } from './services/Action.service';
 import { gameManagerService } from './services/GameManager.service';
 import { textBoxService } from './services/TextBox.service';
 const userInputForm = document.getElementById('user-input-form') as HTMLFormElement;
@@ -30,6 +31,8 @@ userInputForm.addEventListener('submit', event => {
     if (!userText) return;
 
     textBoxService.appendTextElement(`> ${userText}`, TextElements.paragraph);
+    actionService.doAction(userText);
+    console.log(game);
 
     userInput.value = '';
 });

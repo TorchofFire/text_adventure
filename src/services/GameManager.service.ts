@@ -1,3 +1,4 @@
+import { Verbs } from '../constants/Words.constant';
 import Game from '../objects/Game';
 
 class GameManagerService {
@@ -12,7 +13,13 @@ class GameManagerService {
                 verb: ['throw'],
                 narration: 'You throw the ball and it bounces around before settling in the room.',
                 affectedItems: [{ itemId: 'ball', affect: { movedToRoom: 'default' } }],
-                useCases: [{ inInventory: true }]
+                useCases: { inInventory: true }
+            })
+            .addAction({
+                verb: [Verbs.take],
+                narration: 'You grab the ball and you are now carrying it.',
+                affectedItems: [{ itemId: 'ball', affect: { movedToInventory: true } }],
+                useCases: { inInventory: false }
             });
         room.newItem('couch', 'couch', 'a musty old couch')
             .setCanBePickedUp(false);

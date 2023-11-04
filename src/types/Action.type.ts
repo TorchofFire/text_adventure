@@ -2,9 +2,9 @@ import { Verbs } from '../constants/Words.constant';
 import { ObjectId } from './ObjectId.type';
 
 export type Action = {
-    useCases: UseCase[];
+    useCases: UseCase;
     narration: string;
-    verb: Verbs | string[];
+    verb: (Verbs | string)[];
     affectedItems: AffectedItem[];
 };
 
@@ -19,6 +19,7 @@ export type AffectedItem = {
 };
 
 export type Affect = {
+    movedToInventory?: boolean;
     movedToRoom?: ObjectId;
     deletion?: boolean;
 };
