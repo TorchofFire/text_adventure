@@ -23,7 +23,19 @@ class GameManagerService {
             });
         room.newItem('couch', 'couch', 'a musty old couch')
             .setCanBePickedUp(false);
-        room.newItem('knife', 'knife', 'knife');
+        room.newItem('knife', 'knife', 'knife')
+            .addAction({
+                verb: ['throw'],
+                narration: 'You throw the knife and it sticks into the wall.',
+                affectedItems: [{ itemId: 'knife', affect: { movedToRoom: 'default' } }],
+                useCases: { inInventory: true }
+            })
+            .addAction({
+                verb: [Verbs.take],
+                narration: 'You grab the knife and are now carrying it.',
+                affectedItems: [{ itemId: 'knife', affect: { movedToInventory: true } }],
+                useCases: { inInventory: false }
+            });
         room.newItem('cabinet', 'cabinet', 'A normal looking cabinet in the corner of the room')
             .setCanBePickedUp(false);
         return game;

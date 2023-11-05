@@ -34,7 +34,6 @@ class ActionService {
     private affectItems(affectedItems: AffectedItem[]): void {
         for (const affectedItem of affectedItems) {
             const items = itemService.getItemsFromId(affectedItem.itemId);
-            console.log(items);
 
             if (affectedItem.affect.movedToInventory) {
                 itemService.deleteItems(items);

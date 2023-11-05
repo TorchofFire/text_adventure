@@ -7,7 +7,7 @@ class TextBoxService {
 
     describeScene(): void {
         const room = roomService.getRoomPlayerIsIn();
-        let text = `You are in ${room.name}.`;
+        let text = `You are in ${room.article} ${room.name}.`;
         text += `\nThere is${room.items.reduce((acc, value, index, items) => `${acc}${index === 0 ? ` ${value.article} ` : index === items.length - 1 ? `, and ${value.article} ` : `, ${value.article} `}${value.name}`, '')}`;
         // TODO: describe what places you are able to travel to
         this.appendTextElement(text, TextElements.paragraph);

@@ -5,6 +5,58 @@ export enum Articles {
     the = 'the'
 }
 
+export enum Prepositions {
+    aboard = 'aboard',
+    about = 'about',
+    above = 'above',
+    acros = 'across',
+    after = 'after',
+    again = 'against',
+    along = 'along',
+    amid = 'amid',
+    among = 'among',
+    aroun = 'around',
+    as = 'as',
+    before = 'before',
+    behind = 'behind',
+    below = 'below',
+    beneath = 'beneath',
+    beside = 'beside',
+    besides = 'besides',
+    between = 'between',
+    beyon = 'beyond',
+    but = 'but',
+    by = 'by',
+    down = 'down',
+    during = 'during',
+    except = 'except',
+    for = 'for',
+    from = 'from',
+    in = 'in',
+    inside = 'inside',
+    into = 'into',
+    like = 'like',
+    near = 'near',
+    of = 'of',
+    off = 'off',
+    on = 'on',
+    onto = 'onto',
+    over = 'over',
+    than = 'than',
+    through = 'through',
+    to = 'to',
+    toward = 'toward',
+    towards = 'towards',
+    under = 'under',
+    underneath = 'underneath',
+    until = 'until',
+    up = 'up',
+    upon = 'upon',
+    with = 'with',
+    within = 'within',
+    without = 'without'
+}
+
 export enum Verbs {
     go = 'go',
     inspect = 'inspect',
@@ -16,7 +68,7 @@ export enum Verbs {
     search = 'search'
 }
 
-export function getStandardVerb(verb: string): Verbs | null {
+export function getStandardVerb(verb: string): Verbs | string {
     switch (verb.toLowerCase()) {
         case 'go':
         case 'walk':
@@ -51,6 +103,6 @@ export function getStandardVerb(verb: string): Verbs | null {
         case 'investigate':
             return Verbs.search;
         default:
-            return null; // Unknown verb
+            return verb;
     }
 }

@@ -32,7 +32,6 @@ userInputForm.addEventListener('submit', event => {
 
     textBoxService.appendTextElement(`> ${userText}`, TextElements.paragraph);
     actionService.doAction(userText);
-    console.log(game);
 
     userInput.value = '';
 });
