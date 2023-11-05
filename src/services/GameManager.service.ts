@@ -3,9 +3,7 @@ import Game from '../objects/Game';
 
 class GameManagerService {
     testGame(): Game {
-        const game = new Game();
-        game.title = 'The Testing Rooms';
-        game.description = 'A game made solely for the purpose of testing out the engine';
+        const game = new Game('The Testing Rooms', 'A game made solely for the purpose of testing out the engine');
 
         const room = game.rooms[0];
         room.newItem('ball', 'ball', 'a red ball')

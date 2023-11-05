@@ -1,8 +1,8 @@
 import { TextElements } from '../constants/Elements.constant';
+import { game } from '../main';
 import Item from '../objects/Item';
 import { AffectedItem, UseCase } from '../types/Action.type';
 import { itemService } from './Item.service';
-import { playerService } from './Player.service';
 import { roomService } from './Room.service';
 import { textBoxService } from './TextBox.service';
 
@@ -25,7 +25,7 @@ class ActionService {
 
     private itemUseCasesMet(useCases: UseCase, item: Item): boolean { // TODO: Make sure this stuff works as intended
         if (itemService.isInInventory(item) === useCases.inInventory) return true;
-        const room = roomService.getRoomPlayerIsIn();
+        const room = game.player.currentRoom;
         const objectsInRoom = useCases.objectInRoom?.map(obj => itemService.getItemFromIdWithinRoom(obj, room));
         if (objectsInRoom) return true;
         return false;
@@ -37,7 +37,7 @@ class ActionService {
 
             if (affectedItem.affect.movedToInventory) {
                 itemService.deleteItems(items);
-                playerService.getPlayer().inventory.push(...items);
+                game.player.inventory.push(...items);
             }
             if (affectedItem.affect.movedToRoom) {
                 const rooms = roomService.getRoomsFromId(affectedItem.affect.movedToRoom);

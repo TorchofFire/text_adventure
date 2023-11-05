@@ -1,5 +1,4 @@
 import Door from './Door';
-import Player from './Player';
 import { Position } from '../types/Position.type';
 import Item from './Item';
 import { ObjectId } from '../types/ObjectId.type';
@@ -11,7 +10,6 @@ export default class Room {
         this.id = id;
         this.altNames = [];
         this.description = description;
-        this.player = null;
         this.position = null;
         this.article = Articles.the;
         this.doors = [];
@@ -22,7 +20,6 @@ export default class Room {
     id: ObjectId;
     altNames: string[];
     description: string;
-    player: Player | null;
     position: Position | null;
     article: Articles;
     doors: Door[];

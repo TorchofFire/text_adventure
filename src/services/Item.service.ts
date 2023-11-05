@@ -2,11 +2,10 @@ import { game } from '../main';
 import Item from '../objects/Item';
 import Room from '../objects/Room';
 import { ObjectId } from '../types/ObjectId.type';
-import { playerService } from './Player.service';
 
 class ItemService {
     public isInInventory(item: Item): boolean {
-        return playerService.getPlayer().inventory.includes(item);
+        return game.player.inventory.includes(item);
     }
 
     public getItemFromIdWithinRoom(itemId: ObjectId, room: Room): Item | undefined {
@@ -15,18 +14,16 @@ class ItemService {
 
     public getItemsFromId(itemId: ObjectId): Item[] {
         const items = [];
-        const player = playerService.getPlayer();
         for (const room of game.rooms) {
             items.push(...room.items.filter(item => item.id.endsWith(itemId)));
         }
-        items.push(...player.inventory.filter(item => item.id.endsWith(itemId)));
+        items.push(...game.player.inventory.filter(item => item.id.endsWith(itemId)));
         return items;
     }
 
     public getItemsFromName(text: string): Item[] {
         const lcText = text.toLowerCase();
         const items = [];
-        const player = playerService.getPlayer();
         for (const room of game.rooms) {
             items.push(...room.items.filter(item => {
                 const possibleNames = [item.name];
@@ -34,7 +31,7 @@ class ItemService {
                 return possibleNames.some(name => lcText.includes(name.toLowerCase()));
             }));
         }
-        items.push(...player.inventory.filter(item => {
+        items.push(...game.player.inventory.filter(item => {
             const possibleNames = [item.name];
             if (item.altNames) possibleNames.push(...item.altNames);
             return possibleNames.some(name => lcText.includes(name.toLowerCase()));
@@ -45,8 +42,8 @@ class ItemService {
     public deleteItems(items: Item[]): void {
         for (const room of game.rooms) {
             room.items = room.items.filter(item => !items.includes(item));
-            if (room.player?.inventory) room.player.inventory = room.player.inventory.filter(item => !items.includes(item));
         }
+        if (game.player?.inventory) game.player.inventory = game.player.inventory.filter(item => !items.includes(item));
     }
 }
 

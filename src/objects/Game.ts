@@ -2,15 +2,16 @@ import Player from './Player';
 import Room from './Room';
 
 export default class Game {
-    constructor() {
-        this.title = 'Game Title';
-        this.description = 'Game Description';
+    constructor(title: string, description: string) {
+        this.title = title;
+        this.description = description;
         this.rooms = [new Room('Default Room', 'default', 'a default room with which you can customize')];
-        this.rooms[0].player = new Player('Roderick');
+        this.player = new Player('Roderick', this.rooms[0]);
         this.rooms[0].position = { x: 0, y: 0 };
     }
 
     title: string;
     description: string;
     rooms: Room[];
+    player: Player;
 }
