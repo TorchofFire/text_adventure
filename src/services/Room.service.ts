@@ -1,3 +1,4 @@
+import { Directions } from '../constants/Words.constant';
 import { game } from '../main';
 import Item from '../objects/Item';
 import Room from '../objects/Room';
@@ -31,6 +32,22 @@ class RoomService {
 
     public itemInCurrentRoom(item: Item): boolean {
         return game.player.currentRoom.items.includes(item);
+    }
+
+    public getAllRoomNames(room: Room): string[] {
+        const roomNames = [room.name];
+        roomNames.push(...room.altNames);
+        return roomNames;
+    }
+
+    public getDirectionFromPlayer(room: Room): Directions {
+        const currentRoom = game.player.currentRoom;
+        if (room.position.y !== currentRoom.position.y) {
+            if (room.position.y > currentRoom.position.y) return Directions.north;
+            if (room.position.y < currentRoom.position.y) return Directions.south;
+        }
+        if (room.position.x > currentRoom.position.x) return Directions.east;
+        return Directions.west;
     }
 }
 

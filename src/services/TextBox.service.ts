@@ -19,7 +19,7 @@ class TextBoxService {
         const adjacentRooms = roomService.getPlayerAdjacentRooms();
         if (adjacentRooms.length > 0) {
             text += '\n';
-            text += `You can walk to${adjacentRooms.reduce((acc, room, index, rooms) => `${acc}${index === 0 ? ` ${room.article} ` : index === rooms.length - 1 ? `, or ${room.article} ` : `, ${room.article} `}${room.name}`, '')}`;
+            text += `You can walk to${adjacentRooms.reduce((acc, room, index, rooms) => `${acc}${index === 0 ? ` ${room.article} ` : index === rooms.length - 1 ? `, or ${room.article} ` : `, ${room.article} `}${room.name} in the ${roomService.getDirectionFromPlayer(room)}`, '')}`;
             text += '.';
         }
         this.appendTextElement(text, TextElements.paragraph);

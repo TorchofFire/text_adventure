@@ -71,7 +71,7 @@ export enum Verbs {
 export function getVerbSynonyms(verb: string): string[] {
     const synonyms: { [key in string]: string[] } = {
         walk: ['walk', 'go', 'travel'],
-        inspect: ['inspect', 'examine', 'observe'],
+        inspect: ['inspect', 'examine', 'observe', 'look'],
         take: ['take', 'grab', 'pick up'],
         drop: ['drop', 'discard', 'release'],
         use: ['use', 'utilize'],
@@ -81,4 +81,11 @@ export function getVerbSynonyms(verb: string): string[] {
     };
 
     return synonyms[verb] || [verb];
+}
+
+export enum Directions {
+    north = 'north',
+    east = 'east',
+    south = 'south',
+    west = 'west'
 }
