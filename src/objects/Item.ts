@@ -1,5 +1,5 @@
 import { Articles } from '../constants/Words.constant';
-import { Action } from '../types/Action.type';
+import { ItemAction } from '../types/ItemAction.type';
 import { ObjectId } from '../types/ObjectId.type';
 
 export default class Item {
@@ -19,9 +19,9 @@ export default class Item {
     description: string;
     canBePickedUp: boolean;
     article: Articles;
-    actions: Action[];
+    actions: ItemAction[];
 
-    public addAction(action: Action): Item {
+    public addAction(action: ItemAction): Item {
         this.actions.push(action);
         return this;
     }

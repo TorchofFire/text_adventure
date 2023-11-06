@@ -1,24 +1,24 @@
 import { Verbs } from '../constants/Words.constant';
 import { ObjectId } from './ObjectId.type';
 
-export type Action = {
-    useCases: UseCase;
+export type ItemAction = {
+    useCases: ItemUseCase;
     narration: string;
     verb: (Verbs | string)[];
     affectedItems: AffectedItem[];
 };
 
-export type UseCase = {
+export type ItemUseCase = {
     inInventory?: boolean;
     objectInRoom?: ObjectId[];
 };
 
 export type AffectedItem = {
     itemId: ObjectId;
-    affect: Affect;
+    affect: ItemAffect;
 };
 
-export type Affect = {
+export type ItemAffect = {
     movedToInventory?: boolean;
     movedToRoom?: ObjectId;
     deletion?: boolean;

@@ -1,29 +1,51 @@
 import { TextElements } from '../constants/Elements.constant';
+import { Verbs, getVerbSynonyms } from '../constants/Words.constant';
 import { game } from '../main';
 import Item from '../objects/Item';
-import { AffectedItem, UseCase } from '../types/Action.type';
+import { AffectedItem, ItemUseCase } from '../types/ItemAction.type';
 import { itemService } from './Item.service';
 import { roomService } from './Room.service';
 import { textBoxService } from './TextBox.service';
 
 class ActionService {
     public doAction(userText: string): void {
+        if (this.doItemAction(userText)) return;
+        if (this.doWalkAction(userText)) return;
+        this.doInspectSurroundings(userText);
+    }
+
+    private doInspectSurroundings(userText: string): boolean {
+        if (!this.verbFound([Verbs.inspect], userText)) return false;
+        if (userText.split(' ').length > 1) return false; // if inspecting something we don't want to describe scene
+        textBoxService.describeScene();
+        return true;
+    }
+
+    private doWalkAction(userText: string): boolean {
+        if (!this.verbFound([Verbs.walk], userText)) return false;
+        // TODO: walk to different places
+        return true;
+    }
+
+    private doItemAction(userText: string): boolean {
         const items = itemService.getItemsFromName(userText);
-        if (!items[0]) return; // TODO: don't return and instead check if a short command was given such as 'help'
+        if (!items[0]) return false;
         for (const action of items[0].actions) { // TODO: account for item being used on another item.
             if (!this.verbFound(action.verb, userText)) continue;
             if (!this.itemUseCasesMet(action.useCases, items[0])) continue;
             textBoxService.appendTextElement(action.narration, TextElements.paragraph);
             if (action.affectedItems.length > 0) this.affectItems(action.affectedItems);
         }
+        return true;
     }
 
-    private verbFound(verb: string[], text: string): boolean {
+    private verbFound(verbs: string[], text: string): boolean {
         const lcText = text.toLowerCase();
-        return verb.some(v => lcText.includes(v.toLowerCase()));
+        const synonimizedVerbs = verbs.map(verb => getVerbSynonyms(verb)).reduce((a, value) => a.concat(value), []);
+        return synonimizedVerbs.some(verb => lcText.includes(verb.toLowerCase()));
     }
 
-    private itemUseCasesMet(useCases: UseCase, item: Item): boolean { // TODO: Make sure this stuff works as intended
+    private itemUseCasesMet(useCases: ItemUseCase, item: Item): boolean { // TODO: Make sure this stuff works as intended
         if (itemService.isInInventory(item) === useCases.inInventory) return true;
         const room = game.player.currentRoom;
         const objectsInRoom = useCases.objectInRoom?.map(obj => itemService.getItemFromIdWithinRoom(obj, room));

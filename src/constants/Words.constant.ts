@@ -58,7 +58,7 @@ export enum Prepositions {
 }
 
 export enum Verbs {
-    go = 'go',
+    walk = 'walk',
     inspect = 'inspect',
     take = 'take',
     drop = 'drop',
@@ -68,41 +68,17 @@ export enum Verbs {
     search = 'search'
 }
 
-export function getStandardVerb(verb: string): Verbs | string {
-    switch (verb.toLowerCase()) {
-        case 'go':
-        case 'walk':
-        case 'travel':
-            return Verbs.go;
-        case 'inspect':
-        case 'examine':
-        case 'observe':
-        case 'read':
-            return Verbs.inspect;
-        case 'take':
-        case 'grab':
-        case 'pick up':
-            return Verbs.take;
-        case 'drop':
-        case 'discard':
-        case 'release':
-            return Verbs.drop;
-        case 'use':
-        case 'utilize':
-            return Verbs.use;
-        case 'move':
-        case 'push':
-        case 'pull':
-            return Verbs.move;
-        case 'eat':
-        case 'consume':
-        case 'injest':
-            return Verbs.eat;
-        case 'search':
-        case 'explore':
-        case 'investigate':
-            return Verbs.search;
-        default:
-            return verb;
-    }
+export function getVerbSynonyms(verb: string): string[] {
+    const synonyms: { [key in string]: string[] } = {
+        walk: ['walk', 'go', 'travel'],
+        inspect: ['inspect', 'examine', 'observe'],
+        take: ['take', 'grab', 'pick up'],
+        drop: ['drop', 'discard', 'release'],
+        use: ['use', 'utilize'],
+        move: ['move', 'push', 'pull'],
+        eat: ['eat', 'consume', 'ingest'],
+        search: ['search', 'explore', 'investigate']
+    };
+
+    return synonyms[verb] || [verb];
 }

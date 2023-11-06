@@ -1,8 +1,8 @@
-import { Verbs } from '../constants/Words.constant';
+import { Articles, Verbs } from '../constants/Words.constant';
 import Game from '../objects/Game';
 
 class GameManagerService {
-    testGame(): Game {
+    public testGame(): Game {
         const game = new Game('The Testing Rooms', 'A game made solely for the purpose of testing out the engine');
 
         const room = game.rooms[0];
@@ -36,6 +36,8 @@ class GameManagerService {
             });
         room.newItem('cabinet', 'cabinet', 'A normal looking cabinet in the corner of the room')
             .setCanBePickedUp(false);
+        game.newRoom('forest', 'forest', 'You see trees around you as you feel the sun on your skin', { x: 1, y: 0 })
+            .setArticle(Articles.a);
         return game;
     }
 }

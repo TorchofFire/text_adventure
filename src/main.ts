@@ -4,6 +4,7 @@ import { actionService } from './services/Action.service';
 import { gameManagerService } from './services/GameManager.service';
 import { textBoxService } from './services/TextBox.service';
 const userInputForm = document.getElementById('user-input-form') as HTMLFormElement;
+const userInput = document.getElementById('user-input') as HTMLInputElement;
 // eslint-disable-next-line import/no-mutable-exports
 export let game: Game;
 
@@ -24,14 +25,39 @@ document.addEventListener('DOMContentLoaded', () => {
     startGame();
 });
 
+const commandHistory: string[] = [];
+let historyIndex = -1;
+
 userInputForm.addEventListener('submit', event => {
-    const userInput = document.getElementById('user-input') as HTMLInputElement;
     event.preventDefault();
     const userText = userInput.value.trim();
     if (!userText) return;
+
+    commandHistory.unshift(userText);
+    historyIndex = -1;
 
     textBoxService.appendTextElement(`> ${userText}`, TextElements.paragraph);
     actionService.doAction(userText);
 
     userInput.value = '';
+});
+
+userInputForm.addEventListener('keydown', event => {
+    if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        if (commandHistory.length - 1 > historyIndex) {
+            historyIndex++;
+            userInput.value = commandHistory[historyIndex];
+        }
+        return;
+    }
+    if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        if (historyIndex > 0) {
+            historyIndex--;
+            userInput.value = commandHistory[historyIndex];
+        }
+        return;
+    }
+    historyIndex = -1;
 });
