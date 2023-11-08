@@ -12,7 +12,6 @@ This project is a text adventure engine designed to provide an immersive experie
 - **Standardized Verbs**: Recognize and process user input using standardized verbs for action commands.
 - **Item Customization**: Customize item behavior and effects upon interaction within the game.
 - **Room and Player Management**: Manage player inventory, room transitions, and item interactions.
-- **Modularity**: Organize the codebase into manageable modules and classes for better maintainability.
 
 ## Roadmap
 
