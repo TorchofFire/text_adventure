@@ -2,7 +2,7 @@ import Door from './Door';
 import { Position } from '../types/Position.type';
 import Item from './Item';
 import { ObjectId } from '../types/ObjectId.type';
-import { Articles } from '../constants/Words.constant';
+import { Articles, Prepositions } from '../constants/Words.constant';
 
 export default class Room {
     constructor(name: string, id: ObjectId, description: string, position: Position) {
@@ -12,6 +12,7 @@ export default class Room {
         this.description = description;
         this.position = position;
         this.article = Articles.the;
+        this.preposition = Prepositions.in;
         this.doors = [];
         this.items = [];
     }
@@ -22,6 +23,7 @@ export default class Room {
     description: string;
     position: Position;
     article: Articles;
+    preposition: Prepositions;
     doors: Door[];
     items: Item[];
 
@@ -31,8 +33,24 @@ export default class Room {
         return item;
     }
 
-    public setAltName(names: string[]): Room {
+    public newDoor(name: string, id: ObjectId, description: string, destination: Position): Door {
+        const door = new Door(name, id, description, destination);
+        this.doors.push(door);
+        return door;
+    }
+
+    public setAltNames(names: string[]): Room {
         this.altNames = names;
+        return this;
+    }
+
+    public setDescription(description: string): Room {
+        this.description = description;
+        return this;
+    }
+
+    public setPreposition(preposition: Prepositions): Room {
+        this.preposition = preposition;
         return this;
     }
 

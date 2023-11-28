@@ -1,43 +1,29 @@
-import { Articles, Verbs } from '../constants/Words.constant';
+import { Articles, Prepositions } from '../constants/Words.constant';
 import Game from '../objects/Game';
 
 class GameManagerService {
     public testGame(): Game {
-        const game = new Game('The Testing Rooms', 'A game made solely for the purpose of testing out the engine');
+        const game = new Game('Old Beach House', 'Figure out what secrets lie within the old beach house.\n(A game made to use all functions of the engine.)');
 
-        const room = game.rooms[0];
-        room.newItem('ball', 'ball', 'a red ball')
-            .addAction({
-                verb: ['throw'],
-                narration: 'You throw the ball and it bounces around before settling in the room.',
-                affectedItems: [{ itemId: 'ball', affect: { movedToRoom: 'default' } }],
-                useCases: { inInventory: true }
-            })
-            .addAction({
-                verb: [Verbs.take],
-                narration: 'You grab the ball and you are now carrying it.',
-                affectedItems: [{ itemId: 'ball', affect: { movedToInventory: true } }],
-                useCases: { inInventory: false }
-            });
-        room.newItem('couch', 'couch', 'a musty old couch')
-            .setCanBePickedUp(false);
-        room.newItem('knife', 'knife', 'knife')
-            .addAction({
-                verb: ['throw'],
-                narration: 'You throw the knife and it sticks into the wall.',
-                affectedItems: [{ itemId: 'knife', affect: { movedToRoom: 'default' } }],
-                useCases: { inInventory: true }
-            })
-            .addAction({
-                verb: [Verbs.take],
-                narration: 'You grab the knife and are now carrying it.',
-                affectedItems: [{ itemId: 'knife', affect: { movedToInventory: true } }],
-                useCases: { inInventory: false }
-            });
-        room.newItem('cabinet', 'cabinet', 'A normal looking cabinet in the corner of the room')
-            .setCanBePickedUp(false);
-        game.newRoom('forest', 'forest', 'You see trees around you as you feel the sun on your skin', { x: 1, y: 0 })
-            .setArticle(Articles.a);
+        const firstRoom = game.rooms[0];
+        firstRoom.name = 'old beach house';
+        firstRoom.id = 'outside';
+        firstRoom.setPreposition(Prepositions.outside)
+            .setArticle(Articles.an)
+            .setAltNames(['outside'])
+            .setDescription('You feel the sun hit your skin as you see an old somewhat dilapitated beach house in front of you.')
+            .newDoor('front door', 'front', 'This is the door to the inside of the house', { x: 0, y: 1, z: 0 })
+            .setArticle(Articles.the)
+            .setAltNames(['inside']);
+
+        const entrance = game.newRoom('entrance', 'entrance', 'As you walk in a putrid smell hits you in the face. Yuck!', { x: 0, y: 1, z: 0 })
+            .setArticle(Articles.the);
+        entrance.newDoor('door to the outside', 'front', 'This is the door to the outside of the house', { x: 0, y: 0, z: 0 })
+            .setAltNames(['outside']);
+        entrance.newItem('table', 'entrance-table', 'a table that is just positioned in the center of the room. Kinda ominous.');
+
+        game.newRoom('side yard', 'yard', 'what used to be a side yard is now just sand', { x: 1, y: 0, z: 0 });
+
         return game;
     }
 }

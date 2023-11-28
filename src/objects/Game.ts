@@ -9,7 +9,7 @@ export default class Game {
         this.description = description;
         this.rooms = [new Room('Default Room', 'default', 'a default room with which you can customize', { x: 0, y: 0, z: 0 })];
         this.player = new Player('Roderick', this.rooms[0]);
-        this.rooms[0].position = { x: 0, y: 0 };
+        this.rooms[0].position = { x: 0, y: 0, z: 0 };
     }
 
     title: string;

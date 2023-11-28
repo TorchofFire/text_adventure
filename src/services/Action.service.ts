@@ -1,9 +1,10 @@
 import { TextElements } from '../constants/Elements.constant';
-import { Articles, Verbs, getVerbSynonyms } from '../constants/Words.constant';
+import { Verbs, getVerbSynonyms } from '../constants/Words.constant';
 import { game } from '../main';
 import Item from '../objects/Item';
 import Room from '../objects/Room';
 import { AffectedItem, ItemUseCase } from '../types/ItemAction.type';
+import { gameService } from './Game.service';
 import { itemService } from './Item.service';
 import { roomService } from './Room.service';
 import { textBoxService } from './TextBox.service';
@@ -29,9 +30,7 @@ class ActionService {
         if (adjacentRooms.length < 1) return false;
         for (const room of adjacentRooms) {
             if (this.roomFound(room, userText)) {
-                const narration = `You walk to ${Articles.the} ${room.name}`;
                 game.player.currentRoom = room;
-                textBoxService.appendTextElement(narration, TextElements.paragraph);
                 textBoxService.describeScene();
                 return true;
             }
@@ -41,7 +40,13 @@ class ActionService {
 
     private roomFound(room: Room, text: string): boolean {
         const allNames = roomService.getAllRoomNames(room);
-        allNames.push(roomService.getDirectionFromPlayer(room));
+        allNames.push(gameService.getDirectionFromPlayer(room.position));
+        // a door can represent a room
+        const door = game.player.currentRoom.doors.find(d => gameService.compareIfPositionEqual(d.destination, room.position));
+        if (door) {
+            const doorNames = [door.name, ...door.altNames];
+            allNames.push(...doorNames);
+        }
         return allNames.some(name => text.includes(name.toLowerCase()));
     }
 
@@ -63,7 +68,7 @@ class ActionService {
         return synonimizedVerbs.some(verb => text.includes(verb.toLowerCase()));
     }
 
-    private itemUseCasesMet(useCases: ItemUseCase, item: Item): boolean { // TODO: Make sure this stuff works as intended
+    private itemUseCasesMet(useCases: ItemUseCase, item: Item): boolean {
         if (itemService.isInInventory(item) === useCases.inInventory) return true;
         const room = game.player.currentRoom;
         const objectsInRoom = useCases.objectInRoom?.map(obj => itemService.getItemFromIdWithinRoom(obj, room));

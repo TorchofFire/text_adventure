@@ -1,7 +1,7 @@
 {
   "name": "text_adventure",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": "https://github.com/TorchofFire/text_adventure",
   "author": "Torch",
   "license": "MIT",

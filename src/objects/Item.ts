@@ -26,7 +26,7 @@ export default class Item {
         return this;
     }
 
-    public setAltName(names: string[]): Item {
+    public setAltNames(names: string[]): Item {
         this.altNames = names;
         return this;
     }
@@ -40,6 +40,4 @@ export default class Item {
         this.article = article;
         return this;
     }
-
-    // TODO add what event and what triggers it
 }

@@ -15,8 +15,9 @@ export enum Prepositions {
     along = 'along',
     amid = 'amid',
     among = 'among',
-    aroun = 'around',
+    around = 'around',
     as = 'as',
+    at = 'at',
     before = 'before',
     behind = 'behind',
     below = 'below',
@@ -41,6 +42,7 @@ export enum Prepositions {
     off = 'off',
     on = 'on',
     onto = 'onto',
+    outside = 'outside',
     over = 'over',
     than = 'than',
     through = 'through',
@@ -87,5 +89,7 @@ export enum Directions {
     north = 'north',
     east = 'east',
     south = 'south',
-    west = 'west'
+    west = 'west',
+    up = 'up', // z axis
+    down = 'down'
 }
